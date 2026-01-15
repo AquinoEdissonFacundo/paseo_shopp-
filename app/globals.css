@@ -1,0 +1,244 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Paleta principal Paseo Shopp:
+     Primario:  #172026
+     Secundario: #027373
+     Texto principal: blanco
+  */
+  --background: #f5f7f8;
+  --foreground: #172026;
+  --card: #ffffff;
+  --card-foreground: #172026;
+  --popover: #ffffff;
+  --popover-foreground: #172026;
+  --primary: #172026;
+  --primary-foreground: #ffffff;
+  --secondary: #027373;
+  --secondary-foreground: #ffffff;
+  --muted: #e4ebee;
+  --muted-foreground: #4a5861;
+  --accent: #027373;
+  --accent-foreground: #ffffff;
+  --destructive: #b91c1c;
+  --destructive-foreground: #ffffff;
+  --border: #d0d7dd;
+  --input: #d0d7dd;
+  --ring: #027373;
+  --chart-1: #172026;
+  --chart-2: #027373;
+  --chart-3: #5fCDD9;
+  --chart-4: #04BFAD;
+  --chart-5: #04BF9D;
+  --radius: 0.5rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #172026;
+  --sidebar-primary: #172026;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e4ebee;
+  --sidebar-accent-foreground: #172026;
+  --sidebar-border: #d0d7dd;
+  --sidebar-ring: #027373;
+}
+
+.dark {
+  --background: #172026;
+  --foreground: #ffffff;
+  --card: #1f2a32;
+  --card-foreground: #ffffff;
+  --popover: #1f2a32;
+  --popover-foreground: #ffffff;
+  --primary: #027373;
+  --primary-foreground: #ffffff;
+  --secondary: #172026;
+  --secondary-foreground: #ffffff;
+  --muted: #24323d;
+  --muted-foreground: #cbd5e1;
+  --accent: #027373;
+  --accent-foreground: #ffffff;
+  --destructive: #f97373;
+  --destructive-foreground: #172026;
+  --border: #24323d;
+  --input: #24323d;
+  --ring: #027373;
+  --chart-1: #027373;
+  --chart-2: #5fCDD9;
+  --chart-3: #04BFAD;
+  --chart-4: #04BF9D;
+  --chart-5: #172026;
+  --sidebar: #1f2a32;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #027373;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #24323d;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #24323d;
+  --sidebar-ring: #027373;
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Center container content */
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 1280px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  /* Custom breakpoint for extra small screens */
+  @media (min-width: 475px) {
+    .xs\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .xs\:inline {
+      display: inline;
+    }
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: oklch(0.95 0.01 200);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.65 0.15 185);
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.6 0.16 175);
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Animated gradient background */
+  .animated-gradient {
+    background: linear-gradient(-45deg, var(--primary), var(--accent), var(--secondary), var(--primary));
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Shine effect */
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shine::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s;
+  }
+  
+  .shine:hover::before {
+    left: 100%;
+  }
+}
