@@ -55,12 +55,9 @@ export function Hero() {
           >
             <motion.span
               className='inline-block bg-clip-text text-transparent drop-shadow-[0_0_25px_#56565691]'
-              animate={{ backgroundPosition: ['0%', '100%', '0%'] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
               style={{
                 backgroundImage:
                   'linear-gradient(180deg, rgba(23, 32, 38, 1) 0%, rgba(20, 184, 166, 1) 58%, rgba(23, 32, 38, 1) 100%)',
-                backgroundSize: '200% auto',
                 WebkitBackgroundClip: 'text',
                 color: 'transparent',
               }}
