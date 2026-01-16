@@ -91,7 +91,9 @@ function transformAirtableProduct(record: AirtableProduct) {
     fields.originalPrice || fields['Precio Original'] || fields.precioOriginal;
 
   return {
-    id: parseInt(record.id.replace('rec', '')) || Math.random(),
+    // Usamos siempre el ID real de Airtable para que sea estable
+    // y evitar diferencias entre el render del servidor y del cliente.
+    id: record.id,
     name: getName(),
     slug: getSlug(),
     price: getPrice(),

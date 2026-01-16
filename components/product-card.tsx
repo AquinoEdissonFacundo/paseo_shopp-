@@ -73,26 +73,26 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               )}
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col items-start gap-2 sm:gap-3 p-3 sm:p-4 flex-1 bg-gradient-to-b from-card to-card/95">
-            <div className="w-full flex-1">
-              <h3 className="font-semibold text-sm sm:text-base text-foreground text-balance leading-tight group-hover:text-primary transition-colors">
+          <CardFooter className="flex flex-col items-start gap-2 sm:gap-3 p-3 sm:p-4 md:p-5 flex-1 bg-gradient-to-b from-card to-card/95">
+            <div className="w-full flex-1 min-h-0">
+              <h3 className="font-semibold text-base sm:text-lg md:text-xl text-foreground text-balance leading-tight group-hover:text-primary transition-colors line-clamp-2">
                 {product.name}
               </h3>
-              <p className="mt-1 text-xs sm:text-sm text-muted-foreground line-clamp-2 text-pretty">
+              <p className="mt-1.5 sm:mt-2 text-sm sm:text-base text-muted-foreground line-clamp-2 text-pretty">
                 {product.description}
               </p>
             </div>
-            <div className="flex w-full items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
+            <div className="flex w-full items-center justify-between gap-2 sm:gap-3 flex-wrap sm:flex-nowrap mt-auto">
               <div className="flex flex-col min-w-0 flex-1">
-                <span className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                   ${product.price.toLocaleString("es-PY")}
                 </span>
                 {product.onSale && product.originalPrice && (
-                  <span className="text-xs sm:text-sm text-muted-foreground line-through">
+                  <span className="text-sm sm:text-base text-muted-foreground line-through">
                     ${product.originalPrice.toLocaleString("es-PY")}
                   </span>
                 )}
-                <span className="text-xs text-muted-foreground mt-0.5 sm:mt-1">
+                <span className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1">
                   Stock: {product.stock} {product.stock === 1 ? "unidad" : "unidades"}
                 </span>
               </div>
@@ -100,11 +100,12 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                 <Button
                   onClick={handleAddToCart}
                   size="sm"
-                  className="gap-1.5 sm:gap-2 text-xs sm:text-sm shadow-md hover:shadow-lg transition-all"
+                  className="gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 h-8 sm:h-9 md:h-10 shadow-md hover:shadow-lg transition-all"
                   disabled={product.stock === 0}
                 >
                   <ShoppingCart className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   <span className="hidden xs:inline">{product.stock === 0 ? "Sin stock" : "Agregar"}</span>
+                  <span className="xs:hidden">+</span>
                 </Button>
               </motion.div>
             </div>

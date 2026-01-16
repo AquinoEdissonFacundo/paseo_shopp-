@@ -27,7 +27,7 @@ export function CallToAction() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-balance text-primary-foreground drop-shadow-lg px-2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-balance text-primary-foreground drop-shadow-lg px-2"
           >
             Encontrá lo que buscás
           </motion.h2>
@@ -35,7 +35,7 @@ export function CallToAction() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-primary-foreground/90 text-balance px-2"
+            className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-primary-foreground/90 text-balance px-2"
           >
             Miles de productos disponibles. Comprá fácil y recibí rápido.
           </motion.p>

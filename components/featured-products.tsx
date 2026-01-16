@@ -36,7 +36,7 @@ export function FeaturedProducts() {
   }, [])
 
   return (
-    <section className="relative overflow-hidden py-12 sm:py-16 md:py-20 px-4 sm:px-6">
+    <section className="relative overflow-hidden py-10 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
       {/* Mismo fondo fuerte que otras secciones principales */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#172026] via-[#027373] to-background" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_0%,rgba(95,205,217,0.5),transparent_55%)]" />
@@ -47,13 +47,13 @@ export function FeaturedProducts() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-between mb-8 sm:mb-12 gap-4"
+          className="flex flex-col sm:flex-row items-center justify-between mb-6 sm:mb-8 md:mb-10 lg:mb-12 gap-3 sm:gap-4"
         >
-          <div className="flex-1 text-center md:text-left w-full sm:w-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-balance bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent px-2 drop-shadow-lg">
+          <div className="flex-1 text-center sm:text-left w-full sm:w-auto">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-balance bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent px-2 drop-shadow-lg">
               Productos Destacados
             </h2>
-            <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-primary to-accent mt-2 rounded-full mx-auto md:mx-0" />
+            <div className="h-1 w-12 xs:w-16 sm:w-20 bg-gradient-to-r from-primary to-accent mt-2 rounded-full mx-auto sm:mx-0" />
           </div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="hidden md:flex">
             <Button asChild variant="outline" className="bg-background/80 backdrop-blur-sm border-2">
@@ -61,7 +61,7 @@ export function FeaturedProducts() {
             </Button>
           </motion.div>
         </motion.div>
-        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
           {featuredProducts.slice(0, 4).map((product, index) => (
             <ProductCard key={product.id} product={product} index={index} />
           ))}
@@ -70,10 +70,10 @@ export function FeaturedProducts() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-8 flex justify-center md:hidden"
+          className="mt-6 sm:mt-8 flex justify-center md:hidden"
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button asChild variant="outline" size="lg" className="w-full max-w-xs bg-background/80 backdrop-blur-sm border-2">
+            <Button asChild variant="outline" size="lg" className="w-full max-w-xs sm:max-w-sm bg-background/80 backdrop-blur-sm border-2">
               <Link href="/productos">Ver todos los productos</Link>
             </Button>
           </motion.div>

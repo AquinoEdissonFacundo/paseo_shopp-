@@ -44,10 +44,10 @@ export function HowItWorks() {
           transition={{ duration: 0.6 }}
           className='text-center mb-10 sm:mb-12'
         >
-          <h2 className='text-2xl sm:text-3xl md:text-4xl font-bold text-balance text-foreground px-2'>
+          <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold text-balance text-foreground px-2'>
             ¿Cómo funciona Paseo Shopp?
           </h2>
-          <p className='mt-3 text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-2'>
+          <p className='mt-3 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-2'>
             Comprar online en Paraguay nunca fue tan fácil. Seguimos tres pasos
             simples para que recibas tus productos sin complicaciones.
           </p>
@@ -77,10 +77,10 @@ export function HowItWorks() {
                   </div>
 
                   <div className='space-y-2'>
-                    <h3 className='text-lg sm:text-xl font-semibold text-foreground text-left'>
+                    <h3 className='text-xl sm:text-2xl md:text-3xl font-semibold text-foreground text-left'>
                       {step.title}
                     </h3>
-                    <p className='text-sm sm:text-base text-muted-foreground text-left leading-relaxed'>
+                    <p className='text-base sm:text-lg text-muted-foreground text-left leading-relaxed'>
                       {step.description}
                     </p>
                   </div>

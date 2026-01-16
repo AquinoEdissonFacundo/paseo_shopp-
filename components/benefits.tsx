@@ -48,10 +48,10 @@ export function Benefits() {
                 >
                   <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-primary group-hover:scale-110 transition-transform" />
                 </motion.div>
-                <h3 className="font-bold text-lg sm:text-xl text-foreground group-hover:text-primary transition-colors px-2">
+                <h3 className="font-bold text-xl sm:text-2xl md:text-3xl text-foreground group-hover:text-primary transition-colors px-2">
                   {benefit.title}
                 </h3>
-                <p className="text-sm sm:text-base text-muted-foreground max-w-xs px-2">
+                <p className="text-base sm:text-lg text-muted-foreground max-w-xs px-2">
                   {benefit.description}
                 </p>
               </motion.div>

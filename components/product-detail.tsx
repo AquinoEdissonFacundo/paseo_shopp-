@@ -40,18 +40,18 @@ export function ProductDetail({ product }: ProductDetailProps) {
   }
 
   return (
-    <section className="py-12 px-4">
+    <section className="py-6 sm:py-8 md:py-10 lg:py-12 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-7xl">
         <Link
           href="/productos"
-          className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8 transition-colors"
+          className="inline-flex items-center text-sm sm:text-base text-muted-foreground hover:text-foreground mb-4 sm:mb-6 md:mb-8 transition-colors"
         >
           <ChevronLeft className="h-4 w-4 mr-1" />
           Volver al catálogo
         </Link>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
+          <div className="space-y-3 sm:space-y-4">
             <div className="aspect-square rounded-lg overflow-hidden bg-muted relative">
               <Image
                 src={images[selectedImage] || "/placeholder.svg"}
@@ -59,11 +59,16 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 fill
                 className="object-cover"
                 priority
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
-              {product.onSale && <Badge className="absolute top-4 right-4 bg-destructive">Oferta</Badge>}
+              {product.onSale && (
+                <Badge className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-destructive text-xs sm:text-sm">
+                  Oferta
+                </Badge>
+              )}
             </div>
             {images.length > 1 && (
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-4 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                 {images.map((image, index) => (
                   <button
                     key={index}
@@ -85,46 +90,46 @@ export function ProductDetail({ product }: ProductDetailProps) {
             )}
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-5 md:space-y-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold mb-4 text-balance">{product.name}</h1>
-              <div className="flex items-baseline gap-3 mb-6">
-                <span className="text-4xl font-bold">${product.price.toLocaleString("es-PY")}</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-balance">{product.name}</h1>
+              <div className="flex items-baseline gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6 flex-wrap">
+                <span className="text-4xl sm:text-5xl md:text-6xl font-bold">${product.price.toLocaleString("es-PY")}</span>
                 {product.onSale && product.originalPrice && (
-                  <span className="text-2xl text-muted-foreground line-through">
+                  <span className="text-xl sm:text-2xl text-muted-foreground line-through">
                     ${product.originalPrice.toLocaleString("es-PY")}
                   </span>
                 )}
               </div>
-              <div className="mb-6">
-                <p className="text-sm text-muted-foreground">
+              <div className="mb-4 sm:mb-5 md:mb-6">
+                <p className="text-xs sm:text-sm text-muted-foreground">
                   <span className="font-medium">Stock disponible:</span> {product.stock} {product.stock === 1 ? "unidad" : "unidades"}
                 </p>
               </div>
             </div>
 
             <div className="prose prose-sm max-w-none">
-              <p className="text-lg text-muted-foreground leading-relaxed">{product.description}</p>
+              <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed">{product.description}</p>
             </div>
 
-            <div className="space-y-3 pt-6">
+            <div className="space-y-2 sm:space-y-3 pt-4 sm:pt-6">
               <Button 
                 onClick={handleAddToCart} 
                 size="lg" 
-                className="w-full text-lg h-14"
+                className="w-full text-base sm:text-lg h-12 sm:h-14"
                 disabled={product.stock === 0}
               >
-                <ShoppingCart className="mr-2 h-5 w-5" />
+                <ShoppingCart className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 {product.stock === 0 ? "Sin stock" : "Agregar al carrito"}
               </Button>
               <Button
                 onClick={handleWhatsAppInquiry}
                 variant="outline"
                 size="lg"
-                className="w-full text-lg h-14 bg-transparent"
+                className="w-full text-base sm:text-lg h-12 sm:h-14 bg-transparent"
               >
                 <svg
-                  className="mr-2 h-5 w-5"
+                  className="mr-2 h-4 w-4 sm:h-5 sm:w-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +140,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               </Button>
             </div>
 
-            <div className="pt-6 border-t space-y-2 text-sm text-muted-foreground">
+            <div className="pt-4 sm:pt-6 border-t space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-muted-foreground">
               <p>✓ Envíos a todo Paraguay</p>
               <p>✓ Atención personalizada por WhatsApp</p>
               <p>✓ Productos originales con garantía</p>
