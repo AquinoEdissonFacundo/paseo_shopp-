@@ -54,10 +54,11 @@ export function Hero() {
             }}
           >
             <motion.span
-              className='inline-block bg-clip-text text-transparent drop-shadow-[0_0_25px_#56565691]'
+              className='inline-block bg-clip-text text-transparent drop-shadow-[0_0_25px_#56565691] shine-text'
               style={{
                 backgroundImage:
-                  'linear-gradient(180deg, rgba(23, 32, 38, 1) 0%, rgba(20, 184, 166, 1) 58%, rgba(23, 32, 38, 1) 100%)',
+                  'linear-gradient(180deg, rgba(23, 32, 38, 1) 0%, rgba(20, 184, 166, 1) 58%, rgba(23, 32, 38, 1) 100%), linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.9) 30%, rgba(20, 184, 166, 1) 50%, rgba(20, 184, 166, 0.9) 70%, transparent 100%)',
+                backgroundSize: '100% 100%, 200% 100%',
                 WebkitBackgroundClip: 'text',
                 color: 'transparent',
               }}
