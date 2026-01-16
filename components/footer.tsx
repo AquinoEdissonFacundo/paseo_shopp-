@@ -69,7 +69,7 @@ export function Footer() {
             <h3 className="text-base sm:text-lg font-semibold mb-4">Seguinos</h3>
             <div className="flex gap-3">
               <a
-                href="https://instagram.com/paseoshopp"
+                href="https://instagram.com/paseo_shopp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg hover:scale-110 transition-transform shadow-md hover:shadow-lg"
@@ -87,7 +87,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://facebook.com/paseoshopp"
+                href="https://facebook.com/paseo_shopp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg bg-[#1877F2] hover:bg-[#166FE5] hover:scale-110 transition-all shadow-md hover:shadow-lg"

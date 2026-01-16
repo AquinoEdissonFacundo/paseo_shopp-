@@ -57,7 +57,7 @@ export function Hero() {
               className='inline-block bg-clip-text text-transparent drop-shadow-[0_0_25px_#56565691] shine-text'
               style={{
                 backgroundImage:
-                  'linear-gradient(180deg, rgba(23, 32, 38, 1) 0%, rgba(20, 184, 166, 1) 58%, rgba(23, 32, 38, 1) 100%), linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.9) 30%, rgba(20, 184, 166, 1) 50%, rgba(20, 184, 166, 0.9) 70%, transparent 100%)',
+                  'linear-gradient(180deg, rgba(23, 32, 38, 1) 0%, rgba(20, 184, 166, 1) 58%, rgba(23, 32, 38, 1) 100%), linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.4) 30%, rgba(20, 184, 166, 0.6) 50%, rgba(20, 184, 166, 0.4) 70%, transparent 100%)',
                 backgroundSize: '100% 100%, 200% 100%',
                 WebkitBackgroundClip: 'text',
                 color: 'transparent',
@@ -106,24 +106,15 @@ export function Hero() {
               <Button
                 asChild
                 size='lg'
-                className='w-full sm:w-auto text-sm sm:text-base md:text-lg font-bold bg-primary text-primary-foreground hover:bg-primary/90 h-12 sm:h-14 md:h-16 px-6 sm:px-8 md:px-10 rounded-xl sm:rounded-2xl shadow-2xl transition-all duration-300'
+                className='w-full sm:w-auto text-sm sm:text-base md:text-lg font-bold text-primary-foreground hover:opacity-90 h-12 sm:h-14 md:h-16 px-6 sm:px-8 md:px-10 rounded-xl sm:rounded-2xl shadow-2xl transition-all duration-300'
+                style={{ backgroundColor: '#027373' }}
               >
                 <Link
                   href='/productos'
                   className='flex items-center justify-center gap-2 sm:gap-3'
                 >
                   <span>Ver Catálogo</span>
-                  <motion.span
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                    className='text-xl sm:text-2xl'
-                  >
-                    →
-                  </motion.span>
+                  <span className='text-xl sm:text-2xl'>→</span>
                 </Link>
               </Button>
             </motion.div>
