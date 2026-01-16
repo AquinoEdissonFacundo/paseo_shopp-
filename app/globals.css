@@ -266,8 +266,11 @@
   
   .marquee-content {
     display: flex;
-    animation: marquee 30s linear infinite;
     will-change: transform;
+  }
+  
+  .marquee-content.marquee-animate {
+    animation: marquee 30s linear infinite;
   }
   
   .marquee-item {
@@ -284,7 +287,7 @@
   }
   
   /* Pausa la animación al hacer hover */
-  .marquee-wrapper:hover .marquee-content {
+  .marquee-wrapper:hover .marquee-content.marquee-animate {
     animation-play-state: paused;
   }
 }

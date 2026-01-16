@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useState, useEffect } from 'react';
 
 const brands = [
   { name: 'Samsung', src: '/samsung.png' },
@@ -21,6 +22,11 @@ export function BrandsStrip() {
     triggerOnce: true,
     threshold: 0.1,
   });
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <section className='py-8 sm:py-10 px-4 sm:px-6 bg-background/80 border-y border-border/60'>
@@ -42,7 +48,11 @@ export function BrandsStrip() {
             {/* Gradiente derecho */}
             <div className='absolute right-0 top-0 bottom-0 w-20 sm:w-24 md:w-32 z-10 pointer-events-none bg-gradient-to-l from-background/80 via-background/60 to-transparent' />
             <div className='marquee-wrapper overflow-hidden flex'>
-              <div className='marquee-content flex gap-6 sm:gap-8 md:gap-10'>
+              <div
+                className={`marquee-content flex gap-6 sm:gap-8 md:gap-10 ${
+                  isMounted ? 'marquee-animate' : ''
+                }`}
+              >
                 {duplicatedBrands.map((brand, index) => (
                   <div
                     key={`${brand.name}-${index}`}
