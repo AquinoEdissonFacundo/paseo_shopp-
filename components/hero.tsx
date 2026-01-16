@@ -18,7 +18,7 @@ export function Hero() {
         <div
           className='absolute inset-0 bg-cover bg-center bg-no-repeat scale-110'
           style={{
-            backgroundImage: `url("/fondo.jpg")`,
+            backgroundImage: `url("/fondo.webp")`,
             // Un poco de blur pero manteniendo la escena luminosa
             filter: 'blur(2px) brightness(0.8)',
           }}
