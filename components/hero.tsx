@@ -42,13 +42,28 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className='text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-3 sm:mb-4 md:mb-6 leading-[1.1] sm:leading-tight text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.9)]'
+            className='text-5xl xs:text-6xl sm:text-6xl md:text-6xl lg:text-7xl font-extrabold mb-3 sm:mb-4 md:mb-6 leading-[1.1] sm:leading-tight drop-shadow-[0_0_25px_#56565691]'
+            style={{
+              backgroundImage:
+                'linear-gradient(rgb(23, 32, 38) 0%, rgb(20, 184, 166) 58%, rgb(23, 32, 38) 100%)',
+              backgroundSize: '200%',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent',
+              backgroundPosition: '52.0333% center',
+            }}
           >
             <motion.span
-              className='inline-block bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(255,255,255,0.9)]'
+              className='inline-block bg-clip-text text-transparent drop-shadow-[0_0_25px_#56565691]'
               animate={{ backgroundPosition: ['0%', '100%', '0%'] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
-              style={{ backgroundSize: '200% auto' }}
+              style={{
+                backgroundImage:
+                  'linear-gradient(180deg, rgba(23, 32, 38, 1) 0%, rgba(20, 184, 166, 1) 58%, rgba(23, 32, 38, 1) 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+              }}
             >
               Paseo Shopp
             </motion.span>
