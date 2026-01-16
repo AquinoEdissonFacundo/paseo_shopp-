@@ -45,7 +45,7 @@ export function Hero() {
             className='text-5xl xs:text-6xl sm:text-6xl md:text-6xl lg:text-7xl font-extrabold mb-3 sm:mb-4 md:mb-6 leading-[1.1] sm:leading-tight drop-shadow-[0_0_25px_#56565691]'
             style={{
               backgroundImage:
-                'linear-gradient(rgb(23, 32, 38) 0%, rgb(20, 184, 166) 58%, rgb(23, 32, 38) 100%)',
+                'linear-gradient(rgb(87 101 110) 0%, rgb(20, 184, 166) 58%, rgb(23, 32, 38) 100%), linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.4) 30%, rgba(20, 184, 166, 0.6) 50%, rgba(20, 184, 166, 0.4) 70%, transparent 100%)',
               backgroundSize: '200%',
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
