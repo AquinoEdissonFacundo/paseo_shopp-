@@ -23,8 +23,8 @@ export function CartSection() {
     message += `Total: $${totalPrice.toLocaleString("es-PY")}\n\n`
     message += "¿Cuál es la disponibilidad y forma de pago?"
 
-    // Replace with actual Paraguay WhatsApp number (format: 595XXXXXXXXX)
-    const whatsappNumber = "595XXXXXXXXX"
+    // Paraguay WhatsApp number
+    const whatsappNumber = "595982941780"
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, "_blank")
 

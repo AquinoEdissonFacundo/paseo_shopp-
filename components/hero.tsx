@@ -87,8 +87,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className='mt-4 sm:mt-6 md:mt-8 text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 text-pretty leading-relaxed font-medium max-w-2xl mx-auto px-2 sm:px-4 drop-shadow-[0_6px_20px_rgba(0,0,0,0.7)] mb-6 sm:mb-8 md:mb-10 lg:mb-12'
           >
-            Celulares, perfumes, accesorios y regalos. Comprá fácil y recibí tu
-            pedido directo por WhatsApp.
+            Celulares, perfumes, accesorios, regalos y muebles. Comprá fácil y
+            recibí tu pedido directo por WhatsApp.
           </motion.p>
 
           {/* Botón principal */}

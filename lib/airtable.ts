@@ -249,7 +249,9 @@ export async function createProductInAirtable(product: Omit<Product, 'id'>) {
       slug: product.slug,
       price: product.price,
       description: product.description,
-      category: product.category,
+      // Normalizar categoría al enviar: convertir a minúsculas para coincidir con cómo se leen
+      // Esto asegura consistencia entre lectura y escritura
+      category: product.category.toLowerCase().trim(),
       stock: product.stock || 0,
     };
 
@@ -315,7 +317,10 @@ export async function updateProductInAirtable(
       );
       fields.image = allImageUrls.map((url) => ({ url }));
     }
-    if (product.category !== undefined) fields.category = product.category;
+    if (product.category !== undefined) {
+      // Normalizar categoría al enviar: convertir a minúsculas para coincidir con cómo se leen
+      fields.category = product.category.toLowerCase().trim();
+    }
     if (product.stock !== undefined) fields.stock = product.stock;
     if (product.featured !== undefined) fields.featured = product.featured;
     if (product.onSale !== undefined) fields.onSale = product.onSale;

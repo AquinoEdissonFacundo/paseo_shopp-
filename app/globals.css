@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -30,9 +30,9 @@
   --ring: #027373;
   --chart-1: #172026;
   --chart-2: #027373;
-  --chart-3: #5fCDD9;
-  --chart-4: #04BFAD;
-  --chart-5: #04BF9D;
+  --chart-3: #5fcdd9;
+  --chart-4: #04bfad;
+  --chart-5: #04bf9d;
   --radius: 0.5rem;
   --sidebar: #ffffff;
   --sidebar-foreground: #172026;
@@ -65,9 +65,9 @@
   --input: #24323d;
   --ring: #027373;
   --chart-1: #027373;
-  --chart-2: #5fCDD9;
-  --chart-3: #04BFAD;
-  --chart-4: #04BF9D;
+  --chart-2: #5fcdd9;
+  --chart-3: #04bfad;
+  --chart-4: #04bf9d;
   --chart-5: #172026;
   --sidebar: #1f2a32;
   --sidebar-foreground: #ffffff;
@@ -80,8 +80,8 @@
 }
 
 @theme inline {
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -126,14 +126,14 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
   }
-  
+
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
-  
+
   /* Center container content */
   .container {
     margin-left: auto;
@@ -143,14 +143,14 @@
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   @media (min-width: 640px) {
     .container {
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
-  
+
   /* Custom breakpoint for extra small screens */
   @media (min-width: 475px) {
     .xs\:grid-cols-2 {
@@ -160,21 +160,21 @@
       display: inline;
     }
   }
-  
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
   }
-  
+
   ::-webkit-scrollbar-track {
     background: oklch(0.95 0.01 200);
   }
-  
+
   ::-webkit-scrollbar-thumb {
     background: oklch(0.65 0.15 185);
     border-radius: 5px;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
     background: oklch(0.6 0.16 175);
   }
@@ -188,7 +188,7 @@
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
-  
+
   /* Gradient text */
   .gradient-text {
     background: linear-gradient(to right, var(--primary), var(--accent));
@@ -196,14 +196,20 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   /* Animated gradient background */
   .animated-gradient {
-    background: linear-gradient(-45deg, var(--primary), var(--accent), var(--secondary), var(--primary));
+    background: linear-gradient(
+      -45deg,
+      var(--primary),
+      var(--accent),
+      var(--secondary),
+      var(--primary)
+    );
     background-size: 400% 400%;
     animation: gradient-shift 15s ease infinite;
   }
-  
+
   @keyframes gradient-shift {
     0% {
       background-position: 0% 50%;
@@ -215,15 +221,15 @@
       background-position: 0% 50%;
     }
   }
-  
+
   /* Shine effect */
   .shine {
     position: relative;
     overflow: hidden;
   }
-  
+
   .shine::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: -100%;
@@ -237,18 +243,18 @@
     );
     transition: left 0.5s;
   }
-  
+
   .shine:hover::before {
     left: 100%;
   }
-  
+
   /* Efecto de luz que recorre las letras */
   .shine-text {
     position: relative;
     background-size: 200% 100%;
     animation: light-sweep 4s ease-in-out infinite;
   }
-  
+
   @keyframes light-sweep {
     0% {
       background-position: -200% center;
@@ -257,26 +263,26 @@
       background-position: 200% center;
     }
   }
-  
+
   /* Estilos para Marquee (carrusel infinito continuo) */
   .marquee-wrapper {
     overflow: hidden;
     position: relative;
   }
-  
+
   .marquee-content {
     display: flex;
     will-change: transform;
   }
-  
+
   .marquee-content.marquee-animate {
     animation: marquee 30s linear infinite;
   }
-  
+
   .marquee-item {
     flex-shrink: 0;
   }
-  
+
   @keyframes marquee {
     0% {
       transform: translateX(0);
@@ -285,9 +291,15 @@
       transform: translateX(-50%);
     }
   }
-  
+
   /* Pausa la animación al hacer hover */
   .marquee-wrapper:hover .marquee-content.marquee-animate {
     animation-play-state: paused;
+  }
+}
+
+@supports (color: lab(0% 0 0)) {
+  .from-\[\#172026\]\/85 {
+    --tw-gradient-from: lab(0 0 0);
   }
 }

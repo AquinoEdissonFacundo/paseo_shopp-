@@ -1,18 +1,70 @@
 "use client"
 
 import { useState, useMemo, useEffect } from "react"
+import { useSearchParams, useRouter } from "next/navigation"
 import { ProductCard } from "@/components/product-card"
 import { categories } from "@/lib/products"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Search, Smartphone, Sparkles, Headphones, Gift } from "lucide-react"
+import { Search, Smartphone, Sparkles, Headphones, Gift, Sofa } from "lucide-react"
 import { motion } from "framer-motion"
 import type { Product } from "@/lib/types"
 
 export function ProductCatalog() {
+  const searchParams = useSearchParams()
+  const router = useRouter()
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string>("todas")
   const [products, setProducts] = useState<Product[]>([])
+  const [isInitialLoad, setIsInitialLoad] = useState(true)
+  const [isUpdatingFromInput, setIsUpdatingFromInput] = useState(false)
+
+  // Sincronizar con parámetros de URL al cargar o cuando cambian externamente
+  useEffect(() => {
+    const categoriaParam = searchParams.get("categoria")
+    const busquedaParam = searchParams.get("busqueda")
+    
+    if (isInitialLoad) {
+      if (categoriaParam) {
+        setSelectedCategory(categoriaParam)
+      }
+      if (busquedaParam) {
+        setSearchTerm(busquedaParam)
+      }
+      setIsInitialLoad(false)
+    } else if (!isUpdatingFromInput) {
+      // Solo actualizar si no estamos actualizando desde el input (para evitar loops)
+      if (categoriaParam && categoriaParam !== selectedCategory) {
+        setSelectedCategory(categoriaParam)
+      } else if (!categoriaParam && selectedCategory !== "todas") {
+        setSelectedCategory("todas")
+      }
+      if (busquedaParam !== null && busquedaParam !== searchTerm) {
+        setSearchTerm(busquedaParam)
+      }
+    }
+  }, [searchParams, isInitialLoad, isUpdatingFromInput, selectedCategory, searchTerm])
+
+  // Debounce para actualizar URL cuando cambia searchTerm
+  useEffect(() => {
+    if (!isInitialLoad) {
+      setIsUpdatingFromInput(true)
+      const timeoutId = setTimeout(() => {
+        const params = new URLSearchParams(searchParams.toString())
+        if (searchTerm) {
+          params.set("busqueda", searchTerm)
+        } else {
+          params.delete("busqueda")
+        }
+        router.push(`/productos?${params.toString()}`, { scroll: false })
+        setIsUpdatingFromInput(false)
+      }, 500)
+      return () => {
+        clearTimeout(timeoutId)
+        setIsUpdatingFromInput(false)
+      }
+    }
+  }, [searchTerm, isInitialLoad, router, searchParams])
 
   useEffect(() => {
     async function loadProducts() {
@@ -74,7 +126,13 @@ export function ProductCatalog() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant={selectedCategory === "todas" ? "default" : "outline"}
-                onClick={() => setSelectedCategory("todas")}
+                onClick={() => {
+                  setSelectedCategory("todas")
+                  // Actualizar URL
+                  const params = new URLSearchParams(searchParams.toString())
+                  params.delete("categoria")
+                  router.push(`/productos?${params.toString()}`, { scroll: false })
+                }}
                 size="sm"
                 className={`text-xs sm:text-sm ${selectedCategory === "todas" ? "shadow-lg" : "bg-background/80 backdrop-blur-sm"}`}
               >
@@ -92,6 +150,8 @@ export function ProductCatalog() {
                     return <Headphones className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
                   case "regalos":
                     return <Gift className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
+                  case "muebles":
+                    return <Sofa className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
                   default:
                     return null
                 }
@@ -108,7 +168,13 @@ export function ProductCatalog() {
                 >
                   <Button
                     variant={selectedCategory === category.slug ? "default" : "outline"}
-                    onClick={() => setSelectedCategory(category.slug)}
+                    onClick={() => {
+                      setSelectedCategory(category.slug)
+                      // Actualizar URL
+                      const params = new URLSearchParams(searchParams.toString())
+                      params.set("categoria", category.slug)
+                      router.push(`/productos?${params.toString()}`, { scroll: false })
+                    }}
                     size="sm"
                     className={`flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm ${selectedCategory === category.slug ? "shadow-lg" : "bg-background/80 backdrop-blur-sm"}`}
                   >

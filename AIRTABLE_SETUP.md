@@ -65,7 +65,14 @@ Para cada columna, haz clic en **"+ Add a field"** (o el ícono "+" a la derecha
   - perfumes
   - accesorios
   - regalos
+  - muebles
 - ✅ Listo
+
+**⚠️ Si ya tienes la columna creada y necesitas agregar "muebles":**
+1. Haz clic en el encabezado de la columna `category`
+2. Selecciona **"Customize field type"** o **"Field options"**
+3. En la sección de opciones, haz clic en **"+ Add option"** o escribe "muebles" en el campo de búsqueda
+4. Guarda los cambios
 
 #### Columna 8: `stock`
 - **Tipo**: Number

@@ -26,15 +26,17 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const handleAddToCart = () => {
     addToCart(product)
     toast({
-      title: "Producto agregado",
-      description: `${product.name} se agregó al carrito`,
+      title: "✓ Producto agregado",
+      description: `${product.name} se agregó al carrito.`,
+      variant: "success",
+      duration: 3000,
     })
   }
 
   const handleWhatsAppInquiry = () => {
     const message = `Hola! Me interesa este producto: ${product.name} - $${product.price.toLocaleString("es-PY")}`
-    // Replace with actual Paraguay WhatsApp number (format: 595XXXXXXXXX)
-    const whatsappNumber = "595XXXXXXXXX"
+    // Paraguay WhatsApp number
+    const whatsappNumber = "595982941780"
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, "_blank")
   }

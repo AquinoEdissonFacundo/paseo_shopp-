@@ -26,21 +26,50 @@ export function ProductForm({ product, onSuccess, onCancel }: ProductFormProps) 
   const [loading, setLoading] = useState(false)
   const [mainFile, setMainFile] = useState<File | null>(null)
   const [galleryFiles, setGalleryFiles] = useState<File[]>([])
-  const [formData, setFormData] = useState({
-    name: "",
-    slug: "",
-    price: "",
-    description: "",
-    image: "",
-    category: "",
-    stock: "",
-    featured: false,
-    onSale: false,
-    originalPrice: "",
-  })
+  
+  // Inicializar formData con los datos del producto si está disponible
+  const getInitialFormData = () => {
+    if (product) {
+      return {
+        name: product.name || "",
+        slug: product.slug || "",
+        price: product.price?.toString() || "",
+        description: product.description || "",
+        image: product.image || "",
+        category: product.category || "",
+        stock: product.stock?.toString() || "",
+        featured: product.featured || false,
+        onSale: product.onSale || false,
+        originalPrice: product.originalPrice?.toString() || "",
+      }
+    }
+    return {
+      name: "",
+      slug: "",
+      price: "",
+      description: "",
+      image: "",
+      category: "",
+      stock: "",
+      featured: false,
+      onSale: false,
+      originalPrice: "",
+    }
+  }
+  
+  const [formData, setFormData] = useState(getInitialFormData())
 
   useEffect(() => {
+    console.log("ProductForm - product changed:", product)
     if (product) {
+      console.log("ProductForm - Loading product data:", {
+        name: product.name,
+        price: product.price,
+        category: product.category,
+        stock: product.stock,
+        description: product.description,
+        image: product.image,
+      })
       setFormData({
         name: product.name || "",
         slug: product.slug || "",
@@ -53,8 +82,27 @@ export function ProductForm({ product, onSuccess, onCancel }: ProductFormProps) 
         onSale: product.onSale || false,
         originalPrice: product.originalPrice?.toString() || "",
       })
+      // Resetear archivos cuando se carga un producto para editar
+      setMainFile(null)
+      setGalleryFiles([])
+    } else {
+      // Resetear formulario cuando no hay producto (modo crear)
+      setFormData({
+        name: "",
+        slug: "",
+        price: "",
+        description: "",
+        image: "",
+        category: "",
+        stock: "",
+        featured: false,
+        onSale: false,
+        originalPrice: "",
+      })
+      setMainFile(null)
+      setGalleryFiles([])
     }
-  }, [product])
+  }, [product?.id, product?.name]) // Usar dependencias más específicas
 
   const generateSlug = (name: string) => {
     return name
@@ -278,6 +326,7 @@ export function ProductForm({ product, onSuccess, onCancel }: ProductFormProps) 
             <SelectItem value="perfumes">Perfumes</SelectItem>
             <SelectItem value="accesorios">Accesorios</SelectItem>
             <SelectItem value="regalos">Regalos</SelectItem>
+            <SelectItem value="muebles">Muebles</SelectItem>
           </SelectContent>
         </Select>
       </div>

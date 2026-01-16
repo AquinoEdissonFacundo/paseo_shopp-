@@ -29,7 +29,7 @@ export function ContactPage() {
                   <h3 className="font-bold text-lg mb-2">WhatsApp</h3>
                   <p className="text-muted-foreground mb-3">Escribinos y te respondemos al instante</p>
                   <Button asChild>
-                    <a href="https://wa.me/5491123456789" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/595982941780" target="_blank" rel="noopener noreferrer">
                       Abrir WhatsApp
                     </a>
                   </Button>

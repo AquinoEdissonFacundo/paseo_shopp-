@@ -31,8 +31,10 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
     e.preventDefault()
     addToCart(product)
     toast({
-      title: "Producto agregado",
+      title: "✓ Producto agregado",
       description: `${product.name} se agregó al carrito.`,
+      variant: "success",
+      duration: 3000,
     })
   }
 

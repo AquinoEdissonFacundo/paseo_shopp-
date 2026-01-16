@@ -1,14 +1,54 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { useCart } from "@/lib/cart-context"
-import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react"
+import { Minus, Plus, Trash2, ShoppingBag, ShoppingCart } from "lucide-react"
+import type { Product } from "@/lib/types"
+import { ProductCard } from "@/components/product-card"
 
 export function CartPage() {
-  const { cart, removeFromCart, updateQuantity, getTotalPrice } = useCart()
+  const { cart, removeFromCart, updateQuantity, getTotalPrice, addToCart } = useCart()
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([])
+
+  useEffect(() => {
+    async function loadRecommendedProducts() {
+      if (cart.length === 0) {
+        setRecommendedProducts([])
+        return
+      }
+
+      try {
+        const res = await fetch("/api/admin/products")
+        const data = await res.json()
+
+        if (data.success && Array.isArray(data.products)) {
+          // Obtener categorías de los productos en el carrito
+          const cartCategories = [...new Set(cart.map((item) => item.category))]
+          const cartProductIds = cart.map((item) => item.id)
+
+          // Filtrar productos de las mismas categorías, excluyendo los que ya están en el carrito
+          const recommended = data.products
+            .filter(
+              (p: Product) =>
+                cartCategories.includes(p.category) &&
+                !cartProductIds.includes(p.id) &&
+                p.stock > 0
+            )
+            .slice(0, 6) // Máximo 6 productos recomendados
+
+          setRecommendedProducts(recommended)
+        }
+      } catch (error) {
+        console.error("Error loading recommended products:", error)
+      }
+    }
+
+    loadRecommendedProducts()
+  }, [cart])
 
   const handleSendWhatsApp = () => {
     if (cart.length === 0) return
@@ -19,8 +59,8 @@ export function CartPage() {
     })
     message += `\n*TOTAL: $${getTotalPrice().toLocaleString("es-PY")}*`
 
-    // Replace with actual Paraguay WhatsApp number (format: 595XXXXXXXXX)
-    const whatsappNumber = "595XXXXXXXXX"
+    // Paraguay WhatsApp number
+    const whatsappNumber = "595982941780"
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, "_blank")
   }
@@ -109,9 +149,9 @@ export function CartPage() {
 
         <Card className="bg-muted/50">
           <CardContent className="p-6">
-            <div className="flex items-center justify-between mb-6">
-              <span className="text-xl font-semibold">Total:</span>
-              <span className="text-3xl font-bold text-primary">${getTotalPrice().toLocaleString("es-PY")}</span>
+            <div className="flex items-center justify-between gap-4 mb-6">
+              <span className="text-xl font-semibold flex-shrink-0">Total:</span>
+              <span className="text-2xl sm:text-3xl font-bold text-primary break-words text-right min-w-0">${getTotalPrice().toLocaleString("es-PY")}</span>
             </div>
             <Button onClick={handleSendWhatsApp} size="lg" className="w-full text-lg h-14">
               Enviar pedido por WhatsApp
@@ -121,6 +161,18 @@ export function CartPage() {
             </p>
           </CardContent>
         </Card>
+
+        {/* Productos Recomendados */}
+        {recommendedProducts.length > 0 && (
+          <div className="mt-12">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">También te puede interesar</h2>
+            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {recommendedProducts.map((product, index) => (
+                <ProductCard key={product.id} product={product} index={index} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )

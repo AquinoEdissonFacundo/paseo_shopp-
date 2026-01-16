@@ -29,7 +29,7 @@ export function CategoryCards() {
           </h2>
           <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-primary to-accent mt-2 rounded-full mx-auto" />
         </motion.div>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3 md:gap-4 lg:gap-6">
           {categories.map((category, index) => (
             <motion.div
               key={category.slug}
@@ -37,7 +37,7 @@ export function CategoryCards() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Link href={`/categoria/${category.slug}`}>
+              <Link href={`/productos?categoria=${category.slug}`}>
                 <motion.div
                   whileHover={{ y: -8, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -55,15 +55,10 @@ export function CategoryCards() {
                           src={category.image || "/placeholder.jpg"}
                           alt={category.name}
                           fill
-                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 220px"
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-                        <div className="absolute bottom-1.5 sm:bottom-2 left-1.5 sm:left-2 right-1.5 sm:right-2 flex flex-col items-start gap-1 text-left">
-                          <span className="inline-flex items-center rounded-full bg-black/60 px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-wide text-white/90">
-                            {category.slug}
-                          </span>
-                        </div>
                       </motion.div>
                       <h3 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl group-hover:text-primary transition-colors">
                         {category.name}

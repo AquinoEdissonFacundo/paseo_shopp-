@@ -36,6 +36,13 @@ export const categories: Category[] = [
     image: "/miniature-perfume-gift-set.jpg",
     description: "Ideas perfectas para sorprender",
   },
+  {
+    slug: "muebles",
+    name: "Muebles",
+    icon: "🪑",
+    image: "/muebles.jpg",
+    description: "Muebles de calidad para tu hogar",
+  },
 ]
 
 export const products: Product[] = [

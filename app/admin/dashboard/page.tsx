@@ -71,8 +71,10 @@ export default function AdminDashboard() {
   }
 
   const handleEditProduct = (product: Product) => {
+    console.log("handleEditProduct - Product received:", product)
     // Guardar el airtableId para poder actualizar
     const productWithId = { ...product, airtableId: (product as any).airtableId || product.id }
+    console.log("handleEditProduct - Product with ID:", productWithId)
     setEditingProduct(productWithId)
     setIsFormOpen(true)
   }
@@ -103,6 +105,14 @@ export default function AdminDashboard() {
     setIsFormOpen(false)
     setEditingProduct(null)
     loadProducts()
+  }
+
+  const handleDialogChange = (open: boolean) => {
+    setIsFormOpen(open)
+    if (!open) {
+      // Resetear el producto cuando se cierra el diálogo
+      setEditingProduct(null)
+    }
   }
 
   if (loading) {
@@ -244,18 +254,21 @@ export default function AdminDashboard() {
         )}
 
         {/* Form Dialog */}
-        <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+        <Dialog open={isFormOpen} onOpenChange={handleDialogChange}>
           <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>
                 {editingProduct ? "Editar Producto" : "Agregar Nuevo Producto"}
               </DialogTitle>
             </DialogHeader>
-            <ProductForm
-              product={editingProduct}
-              onSuccess={handleFormClose}
-              onCancel={() => setIsFormOpen(false)}
-            />
+            {isFormOpen && (
+              <ProductForm
+                key={editingProduct ? `edit-${editingProduct.id}` : "new"}
+                product={editingProduct}
+                onSuccess={handleFormClose}
+                onCancel={() => setIsFormOpen(false)}
+              />
+            )}
           </DialogContent>
         </Dialog>
 

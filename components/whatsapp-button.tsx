@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button"
 
 export function WhatsAppButton() {
-  // Replace with actual Paraguay WhatsApp number (format: 595XXXXXXXXX)
-  const whatsappNumber = "595XXXXXXXXX"
+  // Paraguay WhatsApp number
+  const whatsappNumber = "595982941780"
   
   return (
     <a

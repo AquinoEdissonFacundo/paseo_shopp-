@@ -28,7 +28,7 @@ export function Contact() {
                       <Phone className="mt-1 h-5 w-5 flex-shrink-0 text-primary" />
                       <div>
                         <p className="font-medium text-foreground">Teléfono</p>
-                        <p className="text-sm text-muted-foreground">+595 21 XXX XXXX</p>
+                        <p className="text-sm text-muted-foreground">+595 982 941780</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
@@ -98,7 +98,7 @@ export function Contact() {
                       </a>
                     </Button>
                     <Button variant="outline" className="w-full justify-start gap-3 bg-transparent hover:bg-muted" asChild>
-                      <a href="https://wa.me/595XXXXXXXXX" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
+                      <a href="https://wa.me/595982941780" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
                         <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#25D366]">
                           <svg
                             className="h-5 w-5"
