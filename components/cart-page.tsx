@@ -55,9 +55,9 @@ export function CartPage() {
 
     let message = "Hola! Quiero hacer este pedido:\n\n"
     cart.forEach((item) => {
-      message += `• ${item.name} x${item.quantity} - $${(item.price * item.quantity).toLocaleString("es-PY")}\n`
+      message += `• ${item.name} x${item.quantity} - Gs ${(item.price * item.quantity).toLocaleString("es-PY")}\n`
     })
-    message += `\n*TOTAL: $${getTotalPrice().toLocaleString("es-PY")}*`
+    message += `\n*TOTAL: Gs ${getTotalPrice().toLocaleString("es-PY")}*`
 
     // Paraguay WhatsApp number
     const whatsappNumber = "595982941780"
@@ -106,7 +106,7 @@ export function CartPage() {
                     >
                       {item.name}
                     </Link>
-                    <p className="text-lg font-bold text-primary mt-1">${item.price.toLocaleString("es-PY")}</p>
+                    <p className="text-lg font-bold text-primary mt-1">Gs {item.price.toLocaleString("es-PY")}</p>
                     <p className="text-xs text-muted-foreground mt-1">
                       Stock disponible: {item.stock} {item.stock === 1 ? "unidad" : "unidades"}
                     </p>
@@ -151,7 +151,7 @@ export function CartPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between gap-4 mb-6">
               <span className="text-xl font-semibold flex-shrink-0">Total:</span>
-              <span className="text-2xl sm:text-3xl font-bold text-primary break-words text-right min-w-0">${getTotalPrice().toLocaleString("es-PY")}</span>
+              <span className="text-2xl sm:text-3xl md:text-2xl font-bold text-primary break-words text-right min-w-0">Gs {getTotalPrice().toLocaleString("es-PY")}</span>
             </div>
             <Button onClick={handleSendWhatsApp} size="lg" className="w-full text-lg h-14">
               Enviar pedido por WhatsApp

@@ -34,7 +34,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
   }
 
   const handleWhatsAppInquiry = () => {
-    const message = `Hola! Me interesa este producto: ${product.name} - $${product.price.toLocaleString("es-PY")}`
+    const message = `Hola! Me interesa este producto: ${product.name} - Gs ${product.price.toLocaleString("es-PY")}`
     // Paraguay WhatsApp number
     const whatsappNumber = "595982941780"
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
@@ -96,10 +96,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-balance">{product.name}</h1>
               <div className="flex items-baseline gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6 flex-wrap">
-                <span className="text-4xl sm:text-5xl md:text-6xl font-bold">${product.price.toLocaleString("es-PY")}</span>
+                <span className="text-4xl sm:text-5xl md:text-4xl lg:text-4xl font-bold">Gs {product.price.toLocaleString("es-PY")}</span>
                 {product.onSale && product.originalPrice && (
-                  <span className="text-xl sm:text-2xl text-muted-foreground line-through">
-                    ${product.originalPrice.toLocaleString("es-PY")}
+                  <span className="text-xl sm:text-2xl md:text-xl text-muted-foreground line-through">
+                    Gs {product.originalPrice.toLocaleString("es-PY")}
                   </span>
                 )}
               </div>

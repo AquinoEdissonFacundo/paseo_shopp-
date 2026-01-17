@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { ProductCard } from "@/components/product-card"
+import { ProductCardSkeleton } from "@/components/product-card-skeleton"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
@@ -10,6 +11,7 @@ import type { Product } from "@/lib/types"
 
 export function FeaturedProducts() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -18,6 +20,7 @@ export function FeaturedProducts() {
   useEffect(() => {
     async function loadProducts() {
       try {
+        setIsLoading(true)
         const res = await fetch("/api/admin/products")
         const data = await res.json()
 
@@ -29,6 +32,8 @@ export function FeaturedProducts() {
         }
       } catch (error) {
         console.error("Error fetching featured products:", error)
+      } finally {
+        setIsLoading(false)
       }
     }
 
@@ -62,9 +67,17 @@ export function FeaturedProducts() {
           </motion.div>
         </motion.div>
         <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-          {featuredProducts.slice(0, 4).map((product, index) => (
-            <ProductCard key={product.id} product={product} index={index} />
-          ))}
+          {isLoading ? (
+            // Mostrar skeleton mientras carga
+            Array.from({ length: 4 }).map((_, index) => (
+              <ProductCardSkeleton key={`skeleton-${index}`} />
+            ))
+          ) : (
+            // Mostrar productos cuando ya están cargados
+            featuredProducts.slice(0, 4).map((product, index) => (
+              <ProductCard key={product.id} product={product} index={index} />
+            ))
+          )}
         </div>
         <motion.div
           initial={{ opacity: 0 }}

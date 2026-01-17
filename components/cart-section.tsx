@@ -17,10 +17,10 @@ export function CartSection() {
     cart.forEach((item) => {
       message += `• ${item.name}\n`
       message += `  Cantidad: ${item.quantity}\n`
-      message += `  Precio: $${(item.price * item.quantity).toLocaleString("es-PY")}\n\n`
+      message += `  Precio: Gs ${(item.price * item.quantity).toLocaleString("es-PY")}\n\n`
     })
 
-    message += `Total: $${totalPrice.toLocaleString("es-PY")}\n\n`
+    message += `Total: Gs ${totalPrice.toLocaleString("es-PY")}\n\n`
     message += "¿Cuál es la disponibilidad y forma de pago?"
 
     // Paraguay WhatsApp number
@@ -78,7 +78,7 @@ export function CartSection() {
                   <div className="flex flex-1 flex-col justify-between">
                     <div>
                       <h3 className="font-semibold text-foreground">{item.name}</h3>
-                      <p className="text-sm text-muted-foreground">${item.price.toLocaleString("es-PY")} c/u</p>
+                      <p className="text-sm text-muted-foreground">Gs {item.price.toLocaleString("es-PY")} c/u</p>
                       <p className="text-xs text-muted-foreground mt-1">
                         Stock: {item.stock} {item.stock === 1 ? "unidad" : "unidades"}
                       </p>
@@ -114,7 +114,7 @@ export function CartSection() {
                       <Trash2 className="h-4 w-4" />
                     </Button>
                     <span className="font-bold text-foreground">
-                      ${(item.price * item.quantity).toLocaleString("es-PY")}
+                      Gs {(item.price * item.quantity).toLocaleString("es-PY")}
                     </span>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ export function CartSection() {
             <CardFooter className="flex-col gap-4 bg-muted/50 p-6">
               <div className="flex w-full items-center justify-between text-lg">
                 <span className="font-semibold text-foreground">Total:</span>
-                <span className="text-2xl font-bold text-primary">${totalPrice.toLocaleString("es-PY")}</span>
+                <span className="text-2xl md:text-xl font-bold text-primary">Gs {totalPrice.toLocaleString("es-PY")}</span>
               </div>
               <Button onClick={sendToWhatsApp} size="lg" className="w-full gap-2 text-base">
                 <Send className="h-5 w-5" />

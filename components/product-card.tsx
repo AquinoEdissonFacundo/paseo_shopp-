@@ -86,12 +86,12 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             </div>
             <div className="flex w-full items-center justify-between gap-2 sm:gap-3 flex-wrap sm:flex-nowrap mt-auto">
               <div className="flex flex-col min-w-0 flex-1">
-                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  ${product.price.toLocaleString("es-PY")}
+                <span className="text-lg sm:text-xl md:text-xl lg:text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  Gs {product.price.toLocaleString("es-PY")}
                 </span>
                 {product.onSale && product.originalPrice && (
-                  <span className="text-sm sm:text-base text-muted-foreground line-through">
-                    ${product.originalPrice.toLocaleString("es-PY")}
+                  <span className="text-sm sm:text-base md:text-sm text-muted-foreground line-through">
+                    Gs {product.originalPrice.toLocaleString("es-PY")}
                   </span>
                 )}
                 <span className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1">

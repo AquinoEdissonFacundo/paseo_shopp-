@@ -220,10 +220,7 @@ export default function AdminDashboard() {
                 <CardHeader>
                   <CardTitle className="line-clamp-1">{product.name}</CardTitle>
                   <p className="text-sm text-muted-foreground">
-                    {new Intl.NumberFormat("es-PY", {
-                      style: "currency",
-                      currency: "PYG",
-                    }).format(product.price)}
+                    Gs {product.price.toLocaleString("es-PY")}
                   </p>
                 </CardHeader>
                 <CardContent>

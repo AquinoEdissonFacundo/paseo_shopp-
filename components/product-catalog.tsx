@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { ProductCard } from "@/components/product-card"
+import { ProductCardSkeleton } from "@/components/product-card-skeleton"
 import { categories } from "@/lib/products"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -16,6 +17,7 @@ export function ProductCatalog() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string>("todas")
   const [products, setProducts] = useState<Product[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const [isInitialLoad, setIsInitialLoad] = useState(true)
   const [isUpdatingFromInput, setIsUpdatingFromInput] = useState(false)
 
@@ -69,6 +71,7 @@ export function ProductCatalog() {
   useEffect(() => {
     async function loadProducts() {
       try {
+        setIsLoading(true)
         const res = await fetch("/api/admin/products")
         const data = await res.json()
 
@@ -79,6 +82,8 @@ export function ProductCatalog() {
         }
       } catch (error) {
         console.error("Error fetching products:", error)
+      } finally {
+        setIsLoading(false)
       }
     }
 
@@ -188,7 +193,14 @@ export function ProductCatalog() {
           </motion.div>
         </div>
 
-        {filteredProducts.length === 0 ? (
+        {isLoading ? (
+          // Mostrar skeleton mientras carga
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+            {Array.from({ length: 8 }).map((_, index) => (
+              <ProductCardSkeleton key={`skeleton-${index}`} />
+            ))}
+          </div>
+        ) : filteredProducts.length === 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
